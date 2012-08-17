@@ -15,7 +15,7 @@ import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.gsondemo.RishabhTest.ListData;
+import com.example.gsondemo.TestJSONArray.ListData;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -50,16 +50,16 @@ public class MainActivity extends Activity {
 	        Log.d("Name", mTest.getSomeKey());
 	}
 	 
-	private void getRishabhData() {
+	private void getJSONArrayData() {
 		 MyGsonParser mGsonParser = new MyGsonParser();
 		 List<NameValuePair> mNameValuePairs = new ArrayList<NameValuePair>();
 		 
-		 RishabhTest mRishabh = new RishabhTest();
-		 mRishabh = (RishabhTest) mGsonParser.getData("http://192.168.0.39/komal/karma/webservice/jsonresponse.php?action=view_connections&userid=148", mNameValuePairs, mRishabh);
+		 TestJSONArray mTestJSONArray = new TestJSONArray();
+		 mTestJSONArray = (TestJSONArray) mGsonParser.getData("http://192.168.0.39/komal/karma/webservice/jsonresponse.php?action=view_connections&userid=148", mNameValuePairs, mTestJSONArray);
 		 
-		 if(mRishabh != null){
-			 System.out.println(mRishabh.toString());
-			 List<ListData> mDatas = mRishabh.getResult();
+		 if(mTestJSONArray != null){
+			 System.out.println(mTestJSONArray.toString());
+			 List<ListData> mDatas = mTestJSONArray.getResult();
 			 for(ListData mData : mDatas){
 				 System.out.println(mData.getUserid());	 
 			 }	 
@@ -86,7 +86,7 @@ public class MainActivity extends Activity {
         
         readStringGson();
         readArrayGson();
-        getRishabhData();
+        getJSONArrayData();
         
         textResponse = (TextView) findViewById(R.id.textResponse);
 
