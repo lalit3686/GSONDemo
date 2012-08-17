@@ -30,7 +30,7 @@ public class MyGsonParser {
     public Object getData(String url, List<NameValuePair> mNameValuePairs, Object mObject) {
 		String responseBody = "";
 		HttpParams mHttpParams;
-		HttpPost mHttpPost = new HttpPost(url);
+		HttpPost mHttpPost = new HttpPost("http://mygogolfteetime.com/iphone/topfive/155");
 		Gson gson = new Gson();
 		try {
 			HttpClient httpclient = new DefaultHttpClient();
@@ -46,6 +46,9 @@ public class MyGsonParser {
 					responseBody = "{\"result\":"+responseBody+"}";
 				}
 				mObject = gson.fromJson(responseBody, mObject.getClass());
+			}
+			else{
+				return null;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

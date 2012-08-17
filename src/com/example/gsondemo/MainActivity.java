@@ -56,11 +56,13 @@ public class MainActivity extends Activity {
 		 
 		 RishabhTest mRishabh = new RishabhTest();
 		 mRishabh = (RishabhTest) mGsonParser.getData("http://192.168.0.39/komal/karma/webservice/jsonresponse.php?action=view_connections&userid=148", mNameValuePairs, mRishabh);
-		 System.out.println(mRishabh.toString());
 		 
-		 List<ListData> mDatas = mRishabh.getResult();
-		 for(ListData mData : mDatas){
-			 System.out.println(mData.getUserid());	 
+		 if(mRishabh != null){
+			 System.out.println(mRishabh.toString());
+			 List<ListData> mDatas = mRishabh.getResult();
+			 for(ListData mData : mDatas){
+				 System.out.println(mData.getUserid());	 
+			 }	 
 		 }
 	}
 	
