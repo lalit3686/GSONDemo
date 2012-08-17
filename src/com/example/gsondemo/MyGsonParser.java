@@ -30,7 +30,7 @@ public class MyGsonParser {
     public Object getData(String url, List<NameValuePair> mNameValuePairs, Object mObject) {
 		String responseBody = "";
 		HttpParams mHttpParams;
-		HttpPost mHttpPost = new HttpPost("http://mygogolfteetime.com/iphone/topfive/155");
+		HttpPost mHttpPost = new HttpPost(url);
 		Gson gson = new Gson();
 		try {
 			HttpClient httpclient = new DefaultHttpClient();

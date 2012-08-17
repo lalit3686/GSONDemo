@@ -15,7 +15,6 @@ import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.gsondemo.TestJSONArray.ListData;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -50,22 +49,6 @@ public class MainActivity extends Activity {
 	        Log.d("Name", mTest.getSomeKey());
 	}
 	 
-	private void getJSONArrayData() {
-		 MyGsonParser mGsonParser = new MyGsonParser();
-		 List<NameValuePair> mNameValuePairs = new ArrayList<NameValuePair>();
-		 
-		 TestJSONArray mTestJSONArray = new TestJSONArray();
-		 mTestJSONArray = (TestJSONArray) mGsonParser.getData("http://192.168.0.39/komal/karma/webservice/jsonresponse.php?action=view_connections&userid=148", mNameValuePairs, mTestJSONArray);
-		 
-		 if(mTestJSONArray != null){
-			 System.out.println(mTestJSONArray.toString());
-			 List<ListData> mDatas = mTestJSONArray.getResult();
-			 for(ListData mData : mDatas){
-				 System.out.println(mData.getUserid());	 
-			 }	 
-		 }
-	}
-	
 	private void readArrayGson() {
 		
 		Gson gson = new Gson();
@@ -86,7 +69,6 @@ public class MainActivity extends Activity {
         
         readStringGson();
         readArrayGson();
-        getJSONArrayData();
         
         textResponse = (TextView) findViewById(R.id.textResponse);
 
