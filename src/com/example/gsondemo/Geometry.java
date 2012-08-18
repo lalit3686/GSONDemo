@@ -5,6 +5,15 @@ public class Geometry {
 
 	private String location_type;
 	private GeometryLocation location;
+	private GeometryViewport viewport;
+
+	public GeometryViewport getViewport() {
+		return viewport;
+	}
+
+	public void setViewport(GeometryViewport viewport) {
+		this.viewport = viewport;
+	}
 
 	public GeometryLocation getLocation() {
 		return location;
