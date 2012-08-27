@@ -7,8 +7,4 @@ public class TestResult {
 	public String getName() {
 		return name;
 	}
-
-	public void setName(String key) {
-		this.name = key;
-	}
 }

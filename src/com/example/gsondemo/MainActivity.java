@@ -25,8 +25,8 @@ public class MainActivity extends Activity {
 
 	private TextView textResponse;
 	private Context mContext;
-	private String jsonObject = "{\"result\":[{\"name\" : \"lalit\"}, {\"name\" : \"jaimin\"}], \"someKey\": \"someValue\"}";
-	private String jsonArray = "[{\"name\" : \"lalit\"}, {\"name\" : \"jaimin\"}]";
+	private String jsonObjectString = "{\"result\":[{\"name\" : \"lalit\"}, {\"name\" : \"jaimin\"}], \"someKey\": \"someValue\"}";
+	private String jsonArrayString = "[{\"name\" : \"lalit\"}, {\"name\" : \"jaimin\"}]";
 	private String url = "http://maps.googleapis.com/maps/api/geocode/json?address=22.99948365856307,72.60040283203125&sensor=false"; 
 	
 	 @Override
@@ -83,7 +83,7 @@ public class MainActivity extends Activity {
 	 
 	 private void readStringGson() {
 		 Gson gson = new Gson();
-	        TestObject mTest = gson.fromJson(jsonObject, TestObject.class); 
+	        TestObject mTest = gson.fromJson(jsonObjectString, TestObject.class); 
 	        ArrayList<TestResult> mResult = (ArrayList<TestResult>) mTest.getResult();
 	        for(TestResult t : mResult){
 	        	Log.d("Name", t.getName());
@@ -96,7 +96,7 @@ public class MainActivity extends Activity {
 		Gson gson = new Gson();
 		Type listType = new TypeToken<Collection<TestResult>>(){}.getType();
 		@SuppressWarnings("unchecked")
-		List<TestResult> posts = (List<TestResult>) gson.fromJson(jsonArray, listType);
+		List<TestResult> posts = (List<TestResult>) gson.fromJson(jsonArrayString, listType);
 		
 		for(TestResult mResult : posts){
 			System.out.println(mResult.getName());
