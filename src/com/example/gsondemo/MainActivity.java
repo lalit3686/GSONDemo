@@ -55,7 +55,7 @@ public class MainActivity extends Activity {
 	        if(CheckConnectivity()){
 	        	mObject = (DataObject) mGsonParser.getData(url, mNameValuePairs, mObject);
 	            if(mObject != null){
-	            	Log.i("response", mObject.getStatus());
+	            	Log.i("response", mObject.status);
 	            	fetchData(mObject);
 	            }
 	            else{
@@ -84,11 +84,11 @@ public class MainActivity extends Activity {
 	 private void readStringGson() {
 		 Gson gson = new Gson();
 	        TestObject mTest = gson.fromJson(jsonObjectString, TestObject.class); 
-	        ArrayList<TestResult> mResult = (ArrayList<TestResult>) mTest.getResult();
+	        ArrayList<TestResult> mResult = (ArrayList<TestResult>) mTest.result;
 	        for(TestResult t : mResult){
-	        	Log.d("Name", t.getName());
+	        	Log.d("Name", t.name);
 	        }
-	        Log.d("Name", mTest.getSomeKey());
+	        Log.d("Name", mTest.someKey);
 	}
 	 
 	private void readArrayGson() {
@@ -99,7 +99,7 @@ public class MainActivity extends Activity {
 		List<TestResult> posts = (List<TestResult>) gson.fromJson(jsonArrayString, listType);
 		
 		for(TestResult mResult : posts){
-			System.out.println(mResult.getName());
+			System.out.println(mResult.name);
 		}
 	}
 	
@@ -110,50 +110,50 @@ public class MainActivity extends Activity {
      * */
     private void fetchData(DataObject mObject) {
     	try {
-				List<Results> results = mObject.getResults();
+				List<Results> results = mObject.results;
 				for(Results result : results){
 					
 					textResponse.append("\n*** AddressComponents ***\n");
-					List<AddressComponents> addressComponents = result.getAddress_components();
+					List<AddressComponents> addressComponents = result.address_components;
 					textResponse.append("\nSize - "+ addressComponents.size()+"");
 					for(AddressComponents components : addressComponents){
-						textResponse.append("\nlong_name - "+ components.getLong_name().toString());
-						textResponse.append("\nshort_name - "+ components.getShort_name().toString());
+						textResponse.append("\nlong_name - "+ components.long_name.toString());
+						textResponse.append("\nshort_name - "+ components.short_name.toString());
 						
-						for(String type : components.getTypes()){
+						for(String type : components.types){
 							textResponse.append("\ntypes - "+ type);							
 						}
 					}
 					
-					textResponse.append("\n\nformated_address - "+result.getFormatted_address());
+					textResponse.append("\n\nformated_address - "+result.formatted_address);
 					
 					textResponse.append("\n\n*** Geometry ***\n");
-					Geometry geometry = result.getGeometry();
-					textResponse.append("\nLocation_type - "+geometry.getLocation_type());
+					Geometry geometry = result.geometry;
+					textResponse.append("\nLocation_type - "+geometry.location_type);
 					
 					textResponse.append("\n\n*** GeometryLocation ***\n");
-					GeometryLocation geometryLocation = result.getGeometry().getLocation();
-					textResponse.append("\nLatitude - "+ geometryLocation.getLat());
-					textResponse.append("\nLongitude - "+ geometryLocation.getLng());
+					GeometryLocation geometryLocation = result.geometry.location;
+					textResponse.append("\nLatitude - "+ geometryLocation.lat);
+					textResponse.append("\nLongitude - "+ geometryLocation.lng);
 					
 					textResponse.append("\n\n*** GeometryViewport ***\n");
-					GeometryViewport viewport = result.getGeometry().getViewport();
+					GeometryViewport viewport = result.geometry.viewport;
 					
 					textResponse.append("\n\n*** NorthEast ***\n");
-					NorthEast northeast = viewport.getmNorthEast();
-					textResponse.append("\nLatitude - "+ northeast.getLat());
-					textResponse.append("\nLongitude - "+ northeast.getLng());
+					NorthEast northeast = viewport.northeast;
+					textResponse.append("\nLatitude - "+ northeast.lat);
+					textResponse.append("\nLongitude - "+ northeast.lng);
 					
 					textResponse.append("\n\n*** SouthWest ***\n");
-					SouthWest southwest = viewport.getmSouthWest();
-					textResponse.append("\nLatitude - "+ southwest.getLat());
-					textResponse.append("\nLongitude - "+ southwest.getLng());
+					SouthWest southwest = viewport.southwest;
+					textResponse.append("\nLatitude - "+ southwest.lat);
+					textResponse.append("\nLongitude - "+ southwest.lng);
 					
 					textResponse.append("\n\n*** Types ***\n");
-					for(String type : result.getTypes()){
+					for(String type : result.types){
 						textResponse.append("\ntype - "+ type);	
 					}
-					textResponse.append("\n\nstatus - "+ mObject.getStatus());
+					textResponse.append("\n\nstatus - "+ mObject.status);
 				}
 		} catch (Exception e) {
 			e.printStackTrace();
